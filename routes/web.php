@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('posts/{post}', function ($post) {
+    $posts = [
+        'first-post' => 'Hello! This is my first post',
+        'second-post' => 'This is my second post'
+    ];
+
+    if (!array_key_exists($post, $posts))
+    {
+        abort(404);
+    }
+
+    return $posts[$post];
+});
